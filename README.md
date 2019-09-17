@@ -1,5 +1,5 @@
 # Kotlin Spring Boot API + MySQL
-Demonstration of CRUD API Rest in Kotlin with Spring Boot
+Demonstration of CRUD API Rest in Kotlin with Spring Boot and MySQL
 
 
 <h2>Create</h2>
