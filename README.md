@@ -3,7 +3,7 @@ Demonstration of CRUD API Rest in Kotlin with Spring Boot and MySQL
 
 
 <h2>Create</h2>
-<p>POST <i>http://localhost:8080/save/book</i></p>
+<p>POST <i>http://localhost:8080/book</i></p>
 <p>Body: {
 	        "name":"Kotlin Book",
 	        "category":"Programming",
@@ -18,7 +18,7 @@ Demonstration of CRUD API Rest in Kotlin with Spring Boot and MySQL
 <p>GET <i>http://localhost:8080/books</i></p>
 
 <h2>Update</h2>
-<p>POST <i>http://localhost:8080/save/book</i></p>
+<p>PUT <i>http://localhost:8080/book</i></p>
 <p>Body: {
           <b>"id": XX</b>
 	        "name":"Kotlin Book",
@@ -27,7 +27,7 @@ Demonstration of CRUD API Rest in Kotlin with Spring Boot and MySQL
           }</p>     
           
 <h2>Delete</h2>
-<p>GET <i>http://localhost:8080/delete/book?id=XX</i></p>
+<p>DELETE <i>http://localhost:8080/book?id=XX</i></p>
 
 
 
