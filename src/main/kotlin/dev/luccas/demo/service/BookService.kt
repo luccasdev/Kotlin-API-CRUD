@@ -15,29 +15,30 @@ class BookService {
     lateinit var bookRepository: BookRepository
 
     fun findAllBooks(): MutableIterable<Book> {
-        if(bookRepository.count() == 0L){
+
+        if(bookRepository.count() == 0L)
             throw CustomException("Library is Empty", HttpStatus.BAD_REQUEST)
-        }
+
         return bookRepository.findAll()
     }
 
     fun saveBook(book: Book) = bookRepository.save(book)
 
-    fun findBookById(id: Long): Optional<Book> {
-        val book = bookRepository.findById(id)
+    fun editBook(book: Book): Book {
+        bookRepository.findById(book.id).orElse(null) ?: throw CustomException("Book not exists", HttpStatus.BAD_REQUEST)
 
-        if(book.isEmpty){
-            throw CustomException("Book Id not found", HttpStatus.BAD_REQUEST)
-        }
-        return book
+        return bookRepository.saveAndFlush(book)
     }
 
-    fun deleteBookById(id: Long) {
-        val book = bookRepository.findById(id)
-        if(book.isEmpty){
-            throw CustomException("Book Id not found", HttpStatus.BAD_REQUEST)
-        }
-        return bookRepository.deleteById(id)
+    fun findBookById(id: Long): Book {
+        return bookRepository.findById(id).orElse(null) ?: throw CustomException("Book Id not found", HttpStatus.BAD_REQUEST)
+    }
+
+    fun deleteBookById(id: Long): Book {
+        val deletedBook = bookRepository.findById(id).orElse(null) ?: throw CustomException("Book Id not found", HttpStatus.BAD_REQUEST)
+        bookRepository.deleteById(id)
+
+        return deletedBook
     }
 
 }
